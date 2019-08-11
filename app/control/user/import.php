@@ -9,9 +9,12 @@ use App\Etc\ExcelControl;
 $excel = $_FILES['excel'];
 
 $user = new UserEntity;
+$user->autoIncrement(true);
+
 $excelControl = new ExcelControl('http://localhost/excel-control/app/storage/excel/MyExcel.csv');
 
 $excelControl->import(function($row) use ($user) {
-    $user->setName($row[0]);
-    $user->setAge($row[1]);
+    $user->name = $row[0];
+    $user->age = $row[1];
+    $user->save();
 });

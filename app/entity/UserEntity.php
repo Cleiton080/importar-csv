@@ -1,30 +1,25 @@
 <?php
 
+
 namespace App\Entity\UserEntity;
 
-class UserEntity
+require_once 'Entity.php';
+
+use App\Entity\Entity;
+
+class UserEntity extends Entity
 {
-    private $name;
-
-    private $age;
-
-    public function setName($name)
+    public function __construct()
     {
-        $this->name = $name;
+        parent::__construct();
+
+        $this->table = 'users';
+
+        $this->primaryKey = 'id';
+
+        $this->fillable = [
+            'name', 'age'
+        ];
     }
 
-    public function setAge($age)
-    {
-        $this->age = $age;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function getAge()
-    {
-        return $this->age;
-    }
 }
