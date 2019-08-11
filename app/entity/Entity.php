@@ -22,7 +22,7 @@ class Entity
 
     public function __construct()
     {
-        $this->connection = new PDO('mysql:host=localhost;dbname=excel', 'cleiton', 'futuro123');
+        $this->connection = new PDO('mysql:host=localhost;dbname=csv', 'cleiton', 'futuro123');
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -37,7 +37,6 @@ class Entity
         try {
             
             $statement = $this->connection->prepare('insert into '. $this->table .' values ('.implode(', ' , $this->attributes).') ');
-            var_dump($statement);
             return $statement->execute();
 
         } catch(PDOException $exception) {

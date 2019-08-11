@@ -10,10 +10,13 @@ class ExcelControl
 
     private $body;
 
+    public $delimiter;
+
     public function __construct($path = null)
     {   
         $this->header = [];
         $this->body = [];
+        $this->delimiter = ',';
 
         if(!is_null($path))
             $this->load($path);
@@ -31,11 +34,11 @@ class ExcelControl
         $file = fopen($this->path, 'r');
         $body = [];
 
-        $this->header = fgetcsv($file);
+        $this->header = fgetcsv($file, 0, $this->delimiter);
 
         while(!feof($file))
         {
-            foreach(fgetcsv($file) as $line)
+            foreach(fgetcsv($file, 0, $this->delimiter) as $line)
                 array_push($body, $line);
         }
 
