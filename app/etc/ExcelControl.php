@@ -65,4 +65,9 @@ class ExcelControl
             $callback($row, $this->header);
         }
     }
+
+    public function export($entity, $callback)
+    {
+        
+    }
 }

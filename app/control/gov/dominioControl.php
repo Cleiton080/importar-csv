@@ -7,17 +7,15 @@ require_once '../../entity/DominioEntity.php';
 require_once '../../etc/ExcelControl.php';
 
 $dominio = new DominioEntity;
-
 $csv = new ExcelControl;
 
 $csv->delimiter = ';';
 
 $csv->load('http://localhost/excel-control/app/storage/excel/Dominios_GovBR_basico.csv');
 
-$csv->import(function($row) use ($dominio) {
+var_dump($csv->getBody());
 
-    if(!strstr($row[3], 'RJ') && is_bool(array_search('', $row)))
-        return false;
+$csv->import(function($row) use ($dominio) {
 
     $dominio->dominio = $row[0];
     $dominio->documento = $row[1];
