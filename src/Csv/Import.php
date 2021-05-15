@@ -1,35 +1,44 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace App\Etc;
+namespace Cleiton080\Csv;
 
-class ExcelControl
+/**
+ * Get a csv file and import samewhere else
+ */
+class Import extends Csv
 {
-    private $path;
-
-    private $header;
-
-    private $body;
-
-    public $delimiter;
-
+    /**
+     * New instance
+     * 
+     * @param string|null $path 
+     */
     public function __construct($path = null)
     {   
-        $this->header = [];
-        $this->body = [];
-        $this->delimiter = ',';
-
+        parent::__construct();
+        
         if(!is_null($path))
             $this->load($path);
     }
 
-    public function load($path)
+    /**
+     * Load csv file
+     * 
+     * @param string $path
+     * @return void
+     */
+    public function load(string $path): void
     {
         $this->path = $path;
         $this->setFile();
         
     }
 
-    private function setFile()
+    /**
+     * read csv file at driver
+     * 
+     * @return void
+     */
+    private function setFile(): void
     {
         $file = fopen($this->path, 'r');
         $body = [];
@@ -48,26 +57,17 @@ class ExcelControl
 
     }
 
-    public function getHeader()
-    {
-        return $this->header;
-    }
-
-    public function getBody()
-    {
-        return $this->body;
-    }
-
-    public function import($callback)
+    /**
+     * Import csv file
+     * 
+     * @param function $callback
+     * @return void
+     */
+    public function import($callback): void
     {
         foreach($this->body as $row)
         {
             $callback($row, $this->header);
         }
-    }
-
-    public function export($entity, $callback)
-    {
-        
     }
 }

@@ -1,0 +1,21 @@
+{
+    "name": "cleiton080/spreadsheet",
+    "description": "This is a package to help you to manage your csv files",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cleiton080",
+            "email": "cleitonpessoa53@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cleiton080\\": "src/"
+        }
+    },
+    "minimum-stability": "beta",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
